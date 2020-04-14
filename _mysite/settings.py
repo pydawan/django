@@ -26,7 +26,7 @@ SECRET_KEY = '*!xfz$waq6r9(@ii+e!z8r_v&4(n(#ah6ltbffr62xz0323t%8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Página para onde o usuário será redirecionando ao fazer login ou logout.
 LOGIN_REDIRECT_URL = 'home:index'
