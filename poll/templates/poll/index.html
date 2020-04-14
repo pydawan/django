@@ -14,9 +14,12 @@
         <div class="content">
             <ul>
                 {% for poll in polls %}
-                <li><a href="{% url 'poll:detail' poll.id %}">{{ poll.question_text }}</a></li>
+                <li>
+				<a href="{% url 'poll:detail' poll.id %}">{{ poll.question_text }}</a>
+				<a href="{% url 'poll:results' poll.id %}"> Ver resultado</a>
+				</li>
                 {% empty %}
-                <li>Nenhuma enquete cadastrada.</li>
+                <li class="has-text-danger">Nenhuma enquete cadastrada.</li>
                 {% endfor %}
             </ul>
         </div>
