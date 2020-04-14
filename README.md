@@ -67,15 +67,17 @@ console.log(csrftoken)
 
 ## Heroku
 
-Este projeto está hospedado e funcionando no Heroku:
+> **OBS**: A parte de upload de arquivos pode não funcionar corretamente no Heroku, isso porque o Heroku não permite que os arquivos sejam servidos a partir dele.
+> Ao executar localmente tudo deve funcionar normalmente.
 
-[]()
+Este projeto está hospedado e funcionando no Heroku, todavia nem todos os recursos estão disponíveis (é preciso estar logado):
+
+[https://natorsc.herokuapp.com/](https://natorsc.herokuapp.com/)
 
 Como este repositório é apenas um exemplo:
 
 - O DEBUG está como True.
 - A SECRET_KEY está em hardcode.
-- A parte de media e arquivos estáticos não está configurada da melhor forma.
 
 > **OBS**: 🚨 Não faça nada disso em produção! 🚨
 
