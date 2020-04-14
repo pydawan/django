@@ -1,0 +1,24 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Deletar post{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Deletar post" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Tem certeza?</h1>
+        <div class="content">
+            <p>Você tem certeza que quer remover o post <b>{{ post.title }}</b>?</p>
+            <p class="has-text-danger">🚨 Essa ação não poderá ser desfeita! 🚨</p>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="buttons">
+                <button class="button is-danger">Sim, eu tenho certeza</button>
+                <a class="button " href="{{ request.META.HTTP_REFERER }}">Não, me leve de volta</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

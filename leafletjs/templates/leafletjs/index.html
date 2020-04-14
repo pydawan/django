@@ -1,0 +1,43 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Geolocalização com leafletjs{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Geolocalização com HTML5 e leafletjs" name="description">
+{% endblock seo %}
+{% block css %}
+{{ block.super }}
+{% load static %}
+<link href="{% static 'leafletjs/css/leaflet.css' %}" rel="stylesheet">
+{% endblock css %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Geolocalização com HTML5 e leafletjs</h1>
+        <div class="content">
+            <p><b>OBS</b>:</p>
+            <ul>
+                <li>Em computadores a localização é aproximada.</li>
+                <li>Caso você não permita a utilizaçãod a localição, serão exibidos 2 marcadores com dados que estão
+                    hardcode no backend.
+                </li>
+                <li>Caso o navegador ou dispositivo não tenha suporte a geolocalização, serão exibidos 2 marcadores com
+                    dados que estão hardcode no backend.
+                </li>
+                <li>No navegador Google Chrome ou em navegadores baseados nele a geolocalização só funciona quando a
+                    página está utilizando HTTPS.
+                </li>
+            </ul>
+        </div>
+        <br>
+        <div id="map" style="height: 300px;"></div>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'leafletjs/js/leaflet.js' %}"></script>
+{# Variável cria uma tag **script id="hello-data" type="application/json"** #}
+{# Dentro desta tag estão os valores que serão passados ao script #}
+{{ data | json_script:"data" }}
+<script src="{% static 'leafletjs/js/map_and_markers.js' %}" type="text/javascript"></script>
+{% endblock scripts %}

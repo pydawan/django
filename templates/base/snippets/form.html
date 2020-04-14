@@ -1,0 +1,58 @@
+{% csrf_token %}
+{% if form.non_field_errors %}
+<div class="content">
+    <ul>
+        {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% for hidden_field in form.hidden_fields %}
+{% if hidden_field.errors %}
+<div class="content">
+    <ul>
+        {% for error in hidden_field.errors %}
+        <li>(Hidden field {{ hidden_field.name }}) {{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{{ hidden_field }}
+{% endfor %}
+{% for field in form.visible_fields %}
+<div class="field">
+    <label class="label" for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+    {% if field.errors %}
+    {% for error in field.errors %}
+    <p><span class="tag is-danger is-light">{{ error }}</span></p>
+    {% endfor %}
+    {% endif %}
+    {% if field.field.widget.input_type == 'checkbox' %}
+    <div class="control">
+        <label class="checkbox">
+            {{ field }}
+        </label>
+    </div>
+    {% elif field.field.widget.input_type == 'select' %}
+    <div class="control">
+        <div class="select">
+            {{ field }}
+        </div>
+    </div>
+    {% elif field.field.widget.input_type == 'radio' %}
+    <div class="control">
+        <label class="radio">
+            {{ field }}
+        </label>
+    </div>
+    {% else %}
+    <div class="control">
+        {{ field }}
+    </div>
+    {% endif %}
+    {% if field.help_text %}
+    <p class="help">{{ field.help_text|safe }}</p>
+    {% endif %}
+</div>
+{% endfor %}

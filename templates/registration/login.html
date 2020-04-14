@@ -1,0 +1,47 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Login{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Login" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="hero is-fullheight has-background-light">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-4-tablet is-5-desktop is-6-widescreen">
+                    <form class="box" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label" for="id_username">Usuário</label>
+                            <div class="control has-icons-left">
+                                <input autocapitalize="none" autocomplete="username" autofocus class="input"
+                                       id="id_username" maxlength="150" name="username" required type="text">
+                                <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label" for="id_password">Senha:</label>
+                            <div class="control has-icons-left">
+                                <input autocomplete="current-password" class="input" id="id_password" name="password"
+                                       required type="password">
+                                <span class="icon is-small is-left"><i class="fa fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="button is-success">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+{% load static %}
+<script charset="utf-8" src="{% static 'base/js/font-awesome/5.13.0/all.min.js' %}"></script>
+{% endblock scripts %}

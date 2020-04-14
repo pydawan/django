@@ -1,0 +1,25 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Ultimas enquetes{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Ultimas enquetes" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Ultimas enquetes</h1>
+        <h2 class="subtitle has-text-centered">Exibindo as 5 ultimas</h2>
+        <div class="content">
+        </div>
+        <div class="content">
+            <ul>
+                {% for poll in polls %}
+                <li><a href="{% url 'poll:detail' poll.id %}">{{ poll.question_text }}</a></li>
+                {% empty %}
+                <li>Nenhuma enquete cadastrada.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock content %}

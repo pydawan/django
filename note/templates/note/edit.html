@@ -1,0 +1,20 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Editar post{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Editar post" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Editar post</h1>
+        <form method="post">
+            {% include "base/snippets/form.html" %}
+            <div class="buttons">
+                <button class="button is-primary">Atualizar</button>
+                <a class="button is-danger" href="{% url 'blog:post_delete' pk=form.instance.pk %}">Deletar</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

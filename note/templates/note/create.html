@@ -1,0 +1,19 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Criar nota{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Criar nota" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Criar nota</h1>
+        <form method="post">
+            {% include "base/snippets/form.html" %}
+            <div class="control">
+                <button class="button is-primary">Criar</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}

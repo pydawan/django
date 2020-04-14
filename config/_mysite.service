@@ -1,0 +1,18 @@
+[Unit]
+Description = 
+After = network.target
+
+[Service]
+User = 
+Group = 
+WorkingDirectory = /home/rscruz/Projetos/fmb-reports/
+ExecStart = /usr/local/bin/pipenv run gunicorn \
+--pid C:\Users\Natorsc\PycharmProjects\aula\pid\_mysite.pid \
+--access-logfile C:\Users\Natorsc\PycharmProjects\aula\logs\gunicorn-access.log \
+--error-logfile C:\Users\Natorsc\PycharmProjects\aula\logs\gunicorn-error.log \
+--workers 2 \
+--bind 0.0.0.0:8000 \
+_mysite.wsgi:application
+
+[Install]
+WantedBy = multi-user.target

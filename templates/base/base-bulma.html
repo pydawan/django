@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link href="{% static 'favicon/favicon.ico' %}" rel="shortcut icon">
+    <link href="{% static 'favicon/favicon.png' %}" rel="icon" type="image/png">
+    <link href="{% static 'favicon/favicon.svg' %}" rel="icon" type="image/svg+xml">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>{% block title %}Python for Devs{% endblock title %}</title>
+    {% block seo %}
+    <meta content="Django, Python, Python 3, Ajax, VueJs" name="keywords">
+    <meta content="Renato dos Santos Cruz" name="author">
+    {% endblock seo %}
+    {% block css %}
+    <link href="{% static 'base/css/bulma-0.8.0/bulma.min.css' %}" rel="stylesheet">
+    {% endblock css %}
+</head>
+
+<body>
+<div class="container">
+    {% include "base/navbar.html" %}
+    {% block content %}{% endblock content %}
+    {% include "base/footer.html" %}
+</div>
+{% block scripts %}
+<script charset="utf-8" src="{% static 'base/js/toggle-navbar.js' %}"></script>
+{% endblock scripts %}
+</body>
+
+</html>

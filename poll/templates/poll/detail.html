@@ -1,0 +1,39 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Detalhes da enquete{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Detalhes da enquete" name="description">
+{% endblock seo %}
+{% block content %}
+<h1 class="title has-text-centered">{{ question.question_text }}</h1>
+{% if error_message %}
+<div class="notification is-danger">
+    <button class="delete"></button>
+    {{ error_message }}
+</div>
+{% endif %}
+<form action="{% url 'poll:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <h1 class="title">{{ question.question_text }}</h1>
+    <div class="field">
+        <div class="control">
+            {% for choice in question.choice_set.all %}
+            <label class="radio" for="choice{{ forloop.counter }}">
+                <input id="choice{{ forloop.counter }}" name="choice" type="radio" value="{{ choice.id }}">
+                {{ choice.choice_text }}
+            </label>
+            <br>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="control">
+        <button class="button is-primary">Votar</button>
+    </div>
+</form>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+{% load static %}
+<script charset="utf-8" src="{% static 'base/js/close-notification.js' %}"></script>
+{% endblock scripts %}

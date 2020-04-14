@@ -1,0 +1,80 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Resultado da enquete{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Resultado da enquete" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Resultado da enquete</h1>
+        {{ question.choice_set.all }}
+        <div class="box">
+            <div class="content">
+                <h3>{{ question.question_text }}</h3>
+                {% for choice in question.choice_set.all %}
+                <p>{{ choice.choice_text }} -- {{ choice.votes }} voto{{ choice.votes|pluralize }}</p>
+                {% endfor %}
+            </div>
+            <nav class="level is-mobile">
+                <div class="level-left">
+                    <a aria-label="reply" class="level-item" href="{% url 'poll:detail' question.id %}">
+                        Votar novamente
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="content">
+            <canvas height="400" id="myChart" width="1200"></canvas>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+{# <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> #}
+{% load static %}
+<script src="{% static 'poll/js/chart.min.js' %}" charset="utf-8"></script>
+<script>
+    choice_text = [{% for choice in question.choice_set.all %}'{{ choice.choice_text }}', {% endfor %}]
+    choice_votes = [{% for choice in question.choice_set.all %}'{{ choice.votes }}', {% endfor %}]
+    background_color = []
+    border_color = []
+    for (var prop in choice_text) {
+        var r = Math.floor(Math.random() * 256)
+        var g = Math.floor(Math.random() * 256)
+        var b = Math.floor(Math.random() * 256)
+        let rgb = `rgba(${r}, ${g}, ${b})`
+        let rgba = `rgba(${r}, ${g}, ${b}, 0.2)`
+        background_color.push(rgba)
+        border_color.push(rgb)
+    }
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: choice_text,
+            datasets: [{
+                label: 'N° de votos',
+                data: choice_votes,
+                backgroundColor: background_color,
+                borderColor: border_color,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock scripts %}

@@ -1,0 +1,46 @@
+{% csrf_token %}
+{% if form.non_field_errors %}
+<div class="content">
+    <ul>
+        {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{% for hidden_field in form.hidden_fields %}
+{% if hidden_field.errors %}
+<div class="content">
+    <ul>
+        {% for error in hidden_field.errors %}
+        <li>(Hidden field {{ hidden_field.name }}) {{ error }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+{{ hidden_field }}
+{% endfor %}
+{% for field in form.visible_fields %}
+<div class="field">
+    {% if field.errors %}
+    {% for error in field.errors %}
+    <p><span class="tag is-danger is-light">{{ error }}</span></p>
+    {% endfor %}
+    {% endif %}
+    <div class="file has-name" id="id_file_upload">
+        <label class="file-label" for="{{ field.id_for_label }}">
+            {{ field }}
+            <span class="file-cta">
+                    <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">{{ field.label_tag }}</span>
+                </span>
+            <span class="file-name">...</span>
+        </label>
+    </div>
+    {% if field.help_text %}
+    <p class="help">{{ field.help_text|safe }}</p>
+    {% endif %}
+</div>
+{% endfor %}

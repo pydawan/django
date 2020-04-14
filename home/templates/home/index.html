@@ -1,0 +1,27 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Python for Devs{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Bem vindo ao Python for Devs, estre projeto é para fins de estudo do framework Django"
+      name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Bem vindo ao Python for Devs</h1>
+        <h2 class="subtitle">Este site está sendo utilizado para o estudo do framework Django.</h2>
+        <p>Técnologias utilizadas até o momento:</p>
+        <div class="content">
+            <p>Backend:</p>
+            <ul>
+                <li>Python 3.8.</li>
+                <li>Django 3.0.5.</li>
+            </ul>
+            <p>Frontend:</p>
+            <ul>
+                <li>Bulma CSS.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock content %}

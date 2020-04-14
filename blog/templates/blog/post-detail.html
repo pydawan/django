@@ -1,0 +1,22 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Detalhes do post{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Detalhes do post" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <div class="content">
+            {% if user.is_authenticated %}
+            <a class="button is-info" href="{% url 'blog:post_edit' pk=post.pk %}">Editar post</a>
+            {% endif %}
+            <h1 class="title">{{ post.title }}</h1>
+            {% if post.published_at %}
+            <h2 class="subtitle  is-7">{{ post.published_at }}</h2>
+            {% endif %}
+            <p>{{ post.text }}</p>
+        </div>
+    </div>
+</section>
+{% endblock content %}

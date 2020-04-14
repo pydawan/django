@@ -1,0 +1,25 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Upload de arquivos{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Ultimos uploads" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Upload de arquivo</h1>
+        <form enctype="multipart/form-data" method="post">
+            {% include "base/snippets/form-upload.html" %}
+            <div class="control">
+                <button class="button is-primary">Fazer upload</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+{% load static %}
+<script charset="utf-8" src="{% static 'base/js/font-awesome/5.13.0/all.min.js' %}" type="text/javascript"></script>
+<script charset="utf-8" src="{% static 'upload/js/file.js' %}" type="text/javascript"></script>
+{% endblock scripts %}

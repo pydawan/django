@@ -1,0 +1,47 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Ajax com Axios{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Realizando requisições Ajax com Axios e Django" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Ajax com Axios</h1>
+        <form>
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">Nome</label>
+                <div class="control">
+                    <input class="input" id="id_first_name" name="first_name" placeholder="Nome" type="text">
+                </div>
+                <p class="help">Tamanho maximo de 10 caracteres</p>
+            </div>
+            <div class="field">
+                <label class="label">Sobrenome</label>
+                <div class="control">
+                    <input class="input" id="id_last_name" name="last_name" placeholder="Sobrenome" type="text">
+                </div>
+                <p class="help">Tamanho maximo de 30 caracteres</p>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <a class="button is-primary" onclick="axios_get_data()">Via GET</a>
+                </div>
+                <div class="control">
+                    <a class="button is-primary" onclick="axios_post_data()">Via POST</a>
+                </div>
+            </div>
+        </form>
+        <br>
+        <p class="has-text-centered	has-text-link" id="result">...</p>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+{{ block.super }}
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{% load static %}
+<script charset="utf-8" src="{% static 'axios/js/axios-get.js' %}"></script>
+<script charset="utf-8" src="{% static 'axios/js/axios-post.js' %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,47 @@
+{% extends 'base/base-bulma.html' %}
+{% block title %}Notas{% endblock title %}
+{% block seo %}
+{{ block.super }}
+<meta content="Notas" name="description">
+{% endblock seo %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Notas</h1>
+        <div class="content">
+            <a class="button is-info is-outlined" href="{% url 'note:create' %}">Criar nota</a>
+        </div>
+        <div class="columns is-multiline is-mobile is-vcentered">
+            {% for note in notes %}
+            <div class="column is-4">
+                <article
+                        class="panel {% cycle 'is-primary' 'is-Llink' 'is-info' 'is-success' 'is-warning' 'is-danger'%}">
+                    <p class="panel-heading">{{ note.title }}</p>
+                    <div class="panel-block">
+                        <p>{{ note.text }}</p>
+                    </div>
+                    <div class="panel-block has-text-centered">
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <a class="button is-link is-outlined" href="{% url 'note:update' note.pk %}">
+                                    Editar
+                                </a>
+                            </p>
+                            <p class="control">
+                                <a class="button is-danger is-outlined" href="{% url 'note:delete' note.pk %}">
+                                    Deletar
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="content">
+                <p class="has-text-danger">Nenhuma nota criada ainda</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
