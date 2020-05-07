@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #
+    'rest_framework',
     # Aplicativos.
     'axios.apps.AxiosConfig',
     'blog.apps.BlogConfig',
+    'gitignore.apps.GitignoreConfig',
     'home.apps.HomeConfig',
     'jquery.apps.JqueryConfig',
     'jsfetch.apps.JsfetchConfig',
@@ -145,3 +148,8 @@ STATICFILES_DIRS = (
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

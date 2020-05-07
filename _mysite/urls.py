@@ -18,15 +18,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Adicionando as urls `accounts` que o Django já tem prontas.
     # Templates pode ser modificados em `templates/registration`.
     path('accounts/', include('django.contrib.auth.urls')),
+    # Rest
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # Aplicativos.
     path('', include('home.urls')),
     path('axios/', include('axios.urls')),
     path('blog/', include('blog.urls')),
+    path('gitignore/', include('gitignore.urls')),
     path('jquery/', include('jquery.urls')),
     path('jsfetch/', include('jsfetch.urls')),
     path('jsxmlhttprequest/', include('jsxmlhttprequest.urls')),
